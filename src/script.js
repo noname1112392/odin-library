@@ -91,10 +91,9 @@ function bookLayout() {
     contentContainer.appendChild(mainContent);
     globalContainer.appendChild(contentContainer);
 }
+//Example
+bookLayout();
+bookLayout();
+bookLayout();
 
-bookLayout();
-bookLayout();
-bookLayout();
-bookLayout();
-bookLayout();
 
