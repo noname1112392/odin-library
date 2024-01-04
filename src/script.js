@@ -107,3 +107,8 @@ bookLayout();
 showDialog.addEventListener('click', () => {
     inputDialog.showModal();
 })
+
+//function to close dialog
+closeDialog.addEventListener('click', () => {
+    inputDialog.close();
+})
