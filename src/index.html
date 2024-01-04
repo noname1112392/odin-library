@@ -17,11 +17,28 @@
                 <h1 class="text-white text-3xl font-bold">Tlibrary</h1>
             </div>
             <div>
-                <button class="bg-indigo-400 rounded-lg w-20 h-10 border border-black text-xl font-bold">ADD</button>
+                <button class="bg-indigo-400 rounded-lg w-20 h-10 border border-black text-xl font-bold" id="showDialog">ADD</button>
             </div>
         </nav>
         <!-- Content Container -->
         <div class="m-10 bg-gray-100 rounded-xl shadow-lg p-10" id="content-container">
+            <!-- dialog -->
+            <dialog id="input-dialog">
+                <h1>Add new book</h1>
+                <form>
+                    <input type="text" name="title" id="inputBTittle" placeholder="TITLE">
+                    <input type="text" name="page" id="inputBPage" placeholder="PAGE">
+                    <input type="text" name="author" id="inputBAuthor" placeholder="AUTHOR">
+                    <div>
+                        <p>Have you read it?</p>
+                        <input type="checkbox">
+                    </div>
+                    <div>
+                        <button>SUBMIT</button>
+                        <button id="closeDialog">CLOSE</button>
+                    </div>
+                </form>
+            </dialog>
             <!-- main content -->
             <div class="p-10 grid grid-cols-3 gap-2" id="main-content">
             </div>

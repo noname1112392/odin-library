@@ -1,7 +1,13 @@
+// Create global variables
 const globalContainer = document.getElementById('global-container');
 const contentContainer = document.getElementById('content-container');
 const mainContent = document.getElementById('main-content');
+const inputDialog = document.getElementById('input-dialog');
+
+
+// Body append
 document.body.appendChild(globalContainer);
+
 // Array for storing book
 const myLibrary = [];
 
@@ -96,4 +102,5 @@ bookLayout();
 bookLayout();
 bookLayout();
 
-
+//show dialog
+const 
