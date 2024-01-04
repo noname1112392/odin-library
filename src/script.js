@@ -3,7 +3,8 @@ const globalContainer = document.getElementById('global-container');
 const contentContainer = document.getElementById('content-container');
 const mainContent = document.getElementById('main-content');
 const inputDialog = document.getElementById('input-dialog');
-
+const showDialog = document.getElementById('show-dialog');
+const closeDialog = document.getElementById('close-dialog');
 
 // Body append
 document.body.appendChild(globalContainer);
@@ -102,5 +103,7 @@ bookLayout();
 bookLayout();
 bookLayout();
 
-//show dialog
-const 
+//function for show dialog
+showDialog.addEventListener('click', () => {
+    inputDialog.showModal();
+})
