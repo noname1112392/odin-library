@@ -116,3 +116,19 @@ showDialog.addEventListener('click', () => {
 closeDialog.addEventListener('click', () => {
     inputDialog.close();
 })
+
+//function for dialog submit button
+dialogSubmit.addEventListener('click', (e) => {
+    let titleValue = inputBTitle.value;
+    let pageValue = inputBPage.value;
+    let authorValue = inputBAuthor.value;
+
+    e.preventDefault();
+
+    if (!titleValue || !pageValue || !authorValue) {
+        
+    } else {
+        alert('yes data')
+        inputDialog.close();
+    }
+})
