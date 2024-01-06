@@ -17,8 +17,11 @@ document.body.appendChild(globalContainer);
 const myLibrary = [];
 
 //constructor of the book
-function Book(title, author, page) {
-
+function Book(title, page, author) {
+    this.title = title;
+    this.author = author;
+    this.page = page;
+    
 }
 
 //function to add book to library
@@ -137,3 +140,9 @@ dialogSubmit.addEventListener('click', (e) => {
         inputDialog.close();
     }
 })
+
+//function to add book to array
+function addBook(title, page, author) {
+    const newBook = new Book(title, page, author);
+    myLibrary.push(newBook); 
+}
