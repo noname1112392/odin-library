@@ -5,6 +5,10 @@ const mainContent = document.getElementById('main-content');
 const inputDialog = document.getElementById('input-dialog');
 const showDialog = document.getElementById('show-dialog');
 const closeDialog = document.getElementById('close-dialog');
+const dialogSubmit = document.getElementById('dialog-submit');
+const inputBTitle = document.getElementById('input-b-title');
+const inputBPage = document.getElementById('input-b-page');
+const inputBAuthor = document.getElementById('input-b-author');
 
 // Body append
 document.body.appendChild(globalContainer);
