@@ -146,7 +146,13 @@ function addBook(title, page, author) {
 
 //function to display book
 function displayBook() {
+    bTitle = '';
+    bPage = '';
+    bAuthor = '';
     myLibrary.forEach((book) => {
-        bookLayout(book.title, book.page, book.author);
+        bTitle = book.title;
+        bPage = book.page;
+        bAuthor = book.author;
     })
+    bookLayout(bTitle, bPage, bAuthor);
 }
