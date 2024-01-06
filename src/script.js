@@ -27,7 +27,7 @@ function Book(title, page, author) {
 //function to add book to library
 
 //function of a book layout
-function bookLayout() {
+function bookLayout(title, page, author) {
     // outside layer of the book
     const outsideContainer = document.createElement('div');
     outsideContainer.className = 'w-full h-64 border border-black bg-gray-700 p-5 flex flex-col justify-center';
@@ -45,7 +45,7 @@ function bookLayout() {
     const pTitle = document.createElement('p');
     pTitle.innerHTML = 'Title:';
     const bTitle = document.createElement('p');
-    bTitle.innerHTML = 'THN';
+    bTitle.innerHTML = title;
     topContentContainerTitle.appendChild(pTitle);
     topContentContainerTitle.appendChild(bTitle);
 
@@ -58,7 +58,7 @@ function bookLayout() {
     const pPage = document.createElement('p');
     pPage.innerHTML = 'Page:';
     const bPage = document.createElement('p');
-    bPage.innerHTML = '355';
+    bPage.innerHTML = page;
     topContentContainerPage.appendChild(pPage);
     topContentContainerPage.appendChild(bPage);
 
@@ -71,7 +71,7 @@ function bookLayout() {
     const pAuthor = document.createElement('p');
     pAuthor.innerHTML = 'Author:';
     const bAuthor = document.createElement('p');
-    bAuthor.innerHTML = 'CP';
+    bAuthor.innerHTML = author;
     topContentContainerAuthor.appendChild(pAuthor);
     topContentContainerAuthor.appendChild(bAuthor);
     
@@ -105,10 +105,6 @@ function bookLayout() {
     contentContainer.appendChild(mainContent);
     globalContainer.appendChild(contentContainer);
 }
-//Example
-bookLayout();
-bookLayout();
-bookLayout();
 
 //function for show dialog
 showDialog.addEventListener('click', () => {
@@ -136,7 +132,7 @@ dialogSubmit.addEventListener('click', (e) => {
         inputBPage.placeholder = newPlaceHolderPage;
         inputBAuthor.placeholder = newPlaceHolderAuthor;
     } else {
-        alert(titleValue + pageValue + authorValue);
+        addBook(titleValue, pageValue, authorValue);
         inputDialog.close();
     }
 })
@@ -145,4 +141,12 @@ dialogSubmit.addEventListener('click', (e) => {
 function addBook(title, page, author) {
     const newBook = new Book(title, page, author);
     myLibrary.push(newBook); 
+    displayBook();
+}
+
+//function to display book
+function displayBook() {
+    myLibrary.forEach((book) => {
+        bookLayout(book.title, book.page, book.author);
+    })
 }
