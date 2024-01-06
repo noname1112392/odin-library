@@ -126,9 +126,14 @@ dialogSubmit.addEventListener('click', (e) => {
     e.preventDefault();
 
     if (!titleValue || !pageValue || !authorValue) {
-        
+        let newPlaceHolderTitle = "-----------Requirement!-----------";
+        let newPlaceHolderPage = "-----------Requirement!-----------";
+        let newPlaceHolderAuthor = "-----------Requirement!-----------";
+        inputBTitle.placeholder = newPlaceHolderTitle;
+        inputBPage.placeholder = newPlaceHolderPage;
+        inputBAuthor.placeholder = newPlaceHolderAuthor;
     } else {
-        alert('yes data')
+        alert(titleValue + pageValue + authorValue);
         inputDialog.close();
     }
 })
