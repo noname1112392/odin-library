@@ -130,7 +130,8 @@ showDialog.addEventListener('click', () => {
 })
 
 //function to close dialog
-closeDialog.addEventListener('click', () => {
+closeDialog.addEventListener('click', (e) => {
+    e.preventDefault();
     inputDialog.close();
 })
 
