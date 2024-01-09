@@ -13,8 +13,11 @@ const isReadCheckBox = document.getElementById('is-read-checkbox');
 let checkBox;
 
 
+//checkbox at false
+isReadCheckBox.checked = false;
+
 // Body append
-document.body.appendChild(globalContainer);
+// document.body.appendChild(globalContainer);
 
 // Array for storing book
 const myLibrary = [];
@@ -24,7 +27,6 @@ function Book(title, page, author) {
     this.title = title;
     this.author = author;
     this.page = page;
-
 }
 
 //function of a book layout
@@ -89,13 +91,21 @@ function bookLayout(title, page, author) {
     //the read checkbox is selected
     const readButton = document.createElement('button');
     checkBox = isReadCheckBox.checked;
-    if(checkBox) {
-        readButton.classList = 'border border-gray-200 bg-yellow-500 w-16 h-12 rounded-lg opacity-100';
-    } else {
-        readButton.classList = 'border border-gray-200 bg-yellow-500 w-16 h-12 rounded-lg opacity-20';
-    }
+    function updateButtonOnOff() {
+        if (checkBox) {
+            readButton.classList = 'border border-gray-200 bg-yellow-500 w-16 h-12 rounded-lg opacity-100';
+        } else {
+            readButton.classList = 'border border-gray-200 bg-yellow-500 w-16 h-12 rounded-lg opacity-20';
+        }
+       }
+       updateButtonOnOff();
     readButton.textContent = 'READ';
     bottomContainer.appendChild(readButton);
+    //a toggle on readbutton
+    readButton.addEventListener('click', () => {
+        checkBox = !checkBox;
+        updateButtonOnOff();
+    })
 
     //DEL button
     const delButton = document.createElement('button');

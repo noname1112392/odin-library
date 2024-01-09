@@ -9,6 +9,25 @@
 </head>
 
 <body>
+     <!-- dialog -->
+     <dialog id="input-dialog" class="rounded-lg" >
+        <div class="p-5">
+            <h1 class="text-center p-2 text-xl font-medium">Add new book</h1>
+            <form class="flex flex-col space-y-5">
+                <input type="text" name="title" id="input-b-title" placeholder="TITLE" class="border border-gray-200 p-2 rounded-xl"/>
+                <input type="text" name="page" id="input-b-page" placeholder="PAGE" class="border border-gray-200 p-2 rounded-xl"/>
+                <input type="text" name="author" id="input-b-author" placeholder="AUTHOR" class="border border-gray-200 p-2 rounded-xl"/>
+                <div class="flex items-center">
+                    <label for="read">Have you read it?</label>
+                    <input type="checkbox" class="w-10" id="is-read-checkbox" name="read"/>
+                </div>
+                <div class="flex justify-between px-5">
+                    <button id="dialog-submit" class="bg-green-500 text-white font-semibold w-20 h-10 rounded-md">SUBMIT</button>
+                    <button id="close-dialog" class="bg-red-500 text-white font-semibold w-20 h-10 rounded-md">CLOSE</button>
+                </div>
+            </form>
+        </div>
+    </dialog>
     <!-- Global container -->
     <div class="min-h-screen bg-gray-300 p-5" id="global-container">
         <!-- Nav bar with logo and an add button -->
@@ -22,25 +41,6 @@
         </nav>
         <!-- Content Container -->
         <div class="m-10 bg-gray-100 rounded-xl shadow-lg p-10" id="content-container">
-            <!-- dialog -->
-            <dialog id="input-dialog" class="rounded-lg" >
-                <div class="p-5">
-                    <h1 class="text-center p-2 text-xl font-medium">Add new book</h1>
-                    <form class="flex flex-col space-y-5">
-                        <input type="text" name="title" id="input-b-title" placeholder="TITLE" class="border border-gray-200 p-2 rounded-xl"/>
-                        <input type="text" name="page" id="input-b-page" placeholder="PAGE" class="border border-gray-200 p-2 rounded-xl"/>
-                        <input type="text" name="author" id="input-b-author" placeholder="AUTHOR" class="border border-gray-200 p-2 rounded-xl"/>
-                        <div class="flex items-center">
-                            <label for="read">Have you read it?</label>
-                            <input type="checkbox" class="w-10" id="is-read-checkbox" name="read"/>
-                        </div>
-                        <div class="flex justify-between px-5">
-                            <button id="dialog-submit" class="bg-green-500 text-white font-semibold w-20 h-10 rounded-md">SUBMIT</button>
-                            <button id="close-dialog" class="bg-red-500 text-white font-semibold w-20 h-10 rounded-md">CLOSE</button>
-                        </div>
-                    </form>
-                </div>
-            </dialog>
             <!-- main content -->
             <div class="p-10 grid grid-cols-3 gap-2" id="main-content">
                 
