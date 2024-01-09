@@ -9,6 +9,9 @@ const dialogSubmit = document.getElementById('dialog-submit');
 const inputBTitle = document.getElementById('input-b-title');
 const inputBPage = document.getElementById('input-b-page');
 const inputBAuthor = document.getElementById('input-b-author');
+const isReadCheckBox = document.getElementById('is-read-checkbox');
+let checkBox;
+
 
 // Body append
 document.body.appendChild(globalContainer);
@@ -21,10 +24,8 @@ function Book(title, page, author) {
     this.title = title;
     this.author = author;
     this.page = page;
-    
-}
 
-//function to add book to library
+}
 
 //function of a book layout
 function bookLayout(title, page, author) {
@@ -35,7 +36,7 @@ function bookLayout(title, page, author) {
     // top container
     const topContainer = document.createElement('div');
     topContainer.className = 'border border-black rounded-t-lg p-2 flex flex-col h-[60%] bg-white';
-    
+
     //content container title
     const topContentContainerTitle = document.createElement('div');
     topContentContainerTitle.classList = 'flex space-x-2';
@@ -74,7 +75,7 @@ function bookLayout(title, page, author) {
     bAuthor.innerHTML = author;
     topContentContainerAuthor.appendChild(pAuthor);
     topContentContainerAuthor.appendChild(bAuthor);
-    
+
     //border
     const border = document.createElement('div');
     border.classList = 'border border-black';
@@ -84,8 +85,15 @@ function bookLayout(title, page, author) {
     bottomContainer.classList = 'border border-black rounded-b-md p-2 flex justify-between h-[40%] items-center bg-white';
 
     //READ button
+    //Attempt to create an if statement to change the color of the button when
+    //the read checkbox is selected
     const readButton = document.createElement('button');
-    readButton.classList = 'border border-gray-200 bg-yellow-500 w-16 h-12 rounded-lg'
+    checkBox = isReadCheckBox.checked;
+    if(checkBox) {
+        readButton.classList = 'border border-gray-200 bg-yellow-500 w-16 h-12 rounded-lg opacity-100';
+    } else {
+        readButton.classList = 'border border-gray-200 bg-yellow-500 w-16 h-12 rounded-lg opacity-20';
+    }
     readButton.textContent = 'READ';
     bottomContainer.appendChild(readButton);
 
@@ -140,7 +148,7 @@ dialogSubmit.addEventListener('click', (e) => {
 //function to add book to array
 function addBook(title, page, author) {
     const newBook = new Book(title, page, author);
-    myLibrary.push(newBook); 
+    myLibrary.push(newBook);
     displayBook();
 }
 
@@ -156,3 +164,4 @@ function displayBook() {
     })
     bookLayout(bTitle, bPage, bAuthor);
 }
+
