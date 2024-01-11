@@ -30,7 +30,7 @@ function Book(title, page, author) {
 }
 
 //function of a book layout
-function bookLayout(title, page, author) {
+function bookLayout(title, page, author, bookId) {
     // outside layer of the book
     const outsideContainer = document.createElement('div');
     outsideContainer.className = 'w-full h-64 border border-black bg-gray-700 p-5 flex flex-col justify-center';
@@ -97,8 +97,8 @@ function bookLayout(title, page, author) {
         } else {
             readButton.classList = 'border border-gray-200 bg-yellow-500 w-16 h-12 rounded-lg opacity-20';
         }
-       }
-       updateButtonOnOff();
+    }
+    updateButtonOnOff();
     readButton.textContent = 'READ';
     bottomContainer.appendChild(readButton);
     //a toggle on readbutton
@@ -112,6 +112,21 @@ function bookLayout(title, page, author) {
     delButton.classList = 'border border-gray-200 bg-red-500 w-16 h-12 rounded-lg'
     delButton.textContent = 'DELETE';
     bottomContainer.appendChild(delButton);
+
+    //function to declare the order of the book
+    delButton.addEventListener("click", () => {
+        if (bookId >= 0 && bookId < myLibrary.length) {
+            myLibrary.splice(bookId, 1)
+            updateUI();
+        }
+    });
+
+    function updateUI() {
+        mainContent.innerHTML = '';
+        myLibrary.forEach((book, index) => {
+            bookLayout(book.title, book.page, book.author, index);
+        });
+    }
 
     //Append the elements
     outsideContainer.appendChild(topContainer);
@@ -168,11 +183,13 @@ function displayBook() {
     bTitle = '';
     bPage = '';
     bAuthor = '';
+    let bookId = '';
     myLibrary.forEach((book) => {
         bTitle = book.title;
         bPage = book.page;
         bAuthor = book.author;
+        bookId = myLibrary.indexOf(book);
     })
-    bookLayout(bTitle, bPage, bAuthor);
+    bookLayout(bTitle, bPage, bAuthor, bookId);
 }
 
