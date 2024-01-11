@@ -9,12 +9,6 @@ const dialogSubmit = document.getElementById('dialog-submit');
 const inputBTitle = document.getElementById('input-b-title');
 const inputBPage = document.getElementById('input-b-page');
 const inputBAuthor = document.getElementById('input-b-author');
-const isReadCheckBox = document.getElementById('is-read-checkbox');
-let checkBox;
-
-
-//checkbox at false
-isReadCheckBox.checked = false;
 
 // Body append
 // document.body.appendChild(globalContainer);
@@ -27,10 +21,11 @@ function Book(title, page, author) {
     this.title = title;
     this.author = author;
     this.page = page;
+    this.isRead = false;
 }
 
 //function of a book layout
-function bookLayout(title, page, author, bookId) {
+function bookLayout(title, page, author, bookId, read) {
     // outside layer of the book
     const outsideContainer = document.createElement('div');
     outsideContainer.className = 'w-full h-64 border border-black bg-gray-700 p-5 flex flex-col justify-center';
@@ -90,22 +85,25 @@ function bookLayout(title, page, author, bookId) {
     //Attempt to create an if statement to change the color of the button when
     //the read checkbox is selected
     const readButton = document.createElement('button');
-    checkBox = isReadCheckBox.checked;
-    function updateButtonOnOff() {
-        if (checkBox) {
+    readButton.textContent = 'READ';
+    bottomContainer.appendChild(readButton);
+    //a toggle on readbutton
+
+    readButton.addEventListener('click', () => {
+        myLibrary[bookId].isRead = !myLibrary[bookId].isRead;
+        readButtonOnOff(myLibrary[bookId].isRead);
+
+    })
+
+    function readButtonOnOff(read) {
+        if (read) {
             readButton.classList = 'border border-gray-200 bg-yellow-500 w-16 h-12 rounded-lg opacity-100';
         } else {
             readButton.classList = 'border border-gray-200 bg-yellow-500 w-16 h-12 rounded-lg opacity-20';
         }
-    }
-    updateButtonOnOff();
-    readButton.textContent = 'READ';
-    bottomContainer.appendChild(readButton);
-    //a toggle on readbutton
-    readButton.addEventListener('click', () => {
-        checkBox = !checkBox;
-        updateButtonOnOff();
-    })
+    };
+
+    readButtonOnOff(read);
 
     //DEL button
     const delButton = document.createElement('button');
@@ -116,7 +114,7 @@ function bookLayout(title, page, author, bookId) {
     //function to declare the order of the book
     delButton.addEventListener("click", () => {
         if (bookId >= 0 && bookId < myLibrary.length) {
-            myLibrary.splice(bookId, 1)
+            myLibrary.splice(bookId, 1);
             updateUI();
         }
     });
@@ -124,7 +122,7 @@ function bookLayout(title, page, author, bookId) {
     function updateUI() {
         mainContent.innerHTML = '';
         myLibrary.forEach((book, index) => {
-            bookLayout(book.title, book.page, book.author, index);
+            bookLayout(book.title, book.page, book.author, index, book.isRead);
         });
     }
 
@@ -155,8 +153,10 @@ dialogSubmit.addEventListener('click', (e) => {
     let titleValue = inputBTitle.value;
     let pageValue = inputBPage.value;
     let authorValue = inputBAuthor.value;
-
+    let checkBox;
+    const isReadCheckBox = document.getElementById('is-read-checkbox');
     e.preventDefault();
+    checkBox = isReadCheckBox.checked;
 
     if (!titleValue || !pageValue || !authorValue) {
         let newPlaceHolderTitle = "-----------Requirement!-----------";
@@ -166,30 +166,24 @@ dialogSubmit.addEventListener('click', (e) => {
         inputBPage.placeholder = newPlaceHolderPage;
         inputBAuthor.placeholder = newPlaceHolderAuthor;
     } else {
-        addBook(titleValue, pageValue, authorValue);
+        addBook(titleValue, pageValue, authorValue, checkBox);
         inputDialog.close();
     }
 })
 
 //function to add book to array
-function addBook(title, page, author) {
+function addBook(title, page, author, checkbox) {
     const newBook = new Book(title, page, author);
+    newBook.isRead = checkbox;
     myLibrary.push(newBook);
     displayBook();
+    console.log(newBook.isRead);
 }
 
 //function to display book
 function displayBook() {
-    bTitle = '';
-    bPage = '';
-    bAuthor = '';
-    let bookId = '';
-    myLibrary.forEach((book) => {
-        bTitle = book.title;
-        bPage = book.page;
-        bAuthor = book.author;
-        bookId = myLibrary.indexOf(book);
-    })
-    bookLayout(bTitle, bPage, bAuthor, bookId);
+    mainContent.innerHTML = '';
+    myLibrary.forEach((book, index) => {
+        bookLayout(book.title, book.page, book.author, index, book.isRead);
+    });
 }
-
